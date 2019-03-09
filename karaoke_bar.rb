@@ -1,27 +1,19 @@
-class Room
+class KaraokeBar
 
-  attr_reader :booking_name, :number_of_guests, :booked_time, :song_list, :song_queue
+  attr_reader :rooms, :guests
 
-  def initialize(booking_name, number_of_guests, booked_time, song_list)
-    @booking_name = booking_name
-    @number_of_guests = number_of_guests
-    @booked_time = booked_time
-    @song_list = song_list
-    @song_queue = []
+  def initialize(rooms, guests)
+    @rooms = rooms
+    @guests = guests
   end
 
-  def find_song(song)
-  result = @song_list.each {|i| return i if i.title == song}
-  return result
+  def find_room(name)
+    result = @rooms.each {|i| return i if i.booking_name == name}
+    return result
   end
 
-  def add_song_to_queue(song)
-    result = find_song(song)
-    @song_queue << result
-  end
-
-  def create_room(booking_name, number_of_guests, booked_time, songs)
-    Room.new(booking_name, number_of_guests, booked_time, songs)
+  def create_room(booking_name, number_of_guests, booked_time)
+    @rooms << Room.new(booking_name, number_of_guests, booked_time)
   end
 
 end
