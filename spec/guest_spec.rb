@@ -9,10 +9,10 @@ require_relative('../room.rb')
 class TestGuest < Minitest::Test
 
   def setup
-
-    @Michael = Guest.new("Michael","Smooth Criminal")
-    @Billy = Guest.new("Billy","Uptown Girl")
-    @Jenny = Guest.new("Jenny", "Venus")
+    @guests = []
+    @Michael = @guests.push(Guest.new("Michael","Smooth Criminal"))
+    @Billy = @guests.push(Guest.new("Billy","Uptown Girl"))
+    @Jenny = @guests.push(Guest.new("Jenny", "Venus"))
 
     @songs = []
     @Off_The_Wall = @songs.push(Song.new("Off The Wall", "Motown", 3))
@@ -23,8 +23,8 @@ class TestGuest < Minitest::Test
   end
   # binding.pry
   def test_guest_can_select_song
-    result = @Billy.select_song("Uptown Girl")
-    assert_equal(@Uptown_Girl, result)
+    result = @guests[1].select_song("Uptown Girl")
+    assert_equal(@songs[1], result)
   end
 
   # def test_guest_can_sing_song

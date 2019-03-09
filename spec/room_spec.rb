@@ -22,9 +22,11 @@ class TestRoom < Minitest::Test
     @room = Room.new(1, 2, 30, @songs)
   end
 
-  def test_guest_names_and_fave_songs
+  def test_guest_names
     names = @guests.map {|i| i.name}
     assert_equal(["Michael", "Billy", "Jenny"], names)
+  end
+  def test_guest_fave_songs
     favourite_songs = @guests.map {|i| i.favourite_song}
     assert_equal(["Smooth Criminal", "Uptown Girl", "Venus"], favourite_songs)
   end
@@ -32,6 +34,11 @@ class TestRoom < Minitest::Test
   def test_find_song
     result = @room.find_song("Uptown Girl")
     assert_equal(@songs[1], result)
+  end
+
+  def test_add_song_to_queue
+    @room.add_song_to_queue("Venus")
+    assert_equal(1, @room.song_queue.length)
   end
 
   # def test_check_in_guest
