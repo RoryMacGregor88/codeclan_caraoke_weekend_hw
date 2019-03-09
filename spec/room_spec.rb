@@ -4,22 +4,21 @@ require('minitest/autorun')
 require('minitest/rg')
 require_relative('../guest.rb')
 require_relative('../song.rb')
-require_relative('../room.rb')
+require_relative('../karaoke_bar.rb')
 
 class TestRoom < Minitest::Test
 
   def setup
     @guests = []
-    @Michael = @guests.push(Guest.new("Michael","Smooth Criminal"))
-    @Billy = @guests.push(Guest.new("Billy","Uptown Girl"))
-    @Jenny = @guests.push(Guest.new("Jenny", "Venus"))
+    @Michael = @guests.push(Guest.new("Michael","Smooth Criminal", 10))
+    @Billy = @guests.push(Guest.new("Billy","Uptown Girl", 20))
+    @Jenny = @guests.push(Guest.new("Jenny", "Venus", 30))
 
     @songs = []
     @Off_The_Wall = @songs.push(Song.new("Off The Wall", "Motown", 3))
     @Uptown_Girl = @songs.push(Song.new("Uptown Girl", "Pop", 4))
     @Venus = @songs.push(Song.new("Venus", "Pop", 2))
-
-    @room = Room.new(1, 2, 30, @songs)
+    @karaoke_bar = Room.new("Jackson", 2, 30, @songs)
   end
 
   def test_guest_names
@@ -32,13 +31,21 @@ class TestRoom < Minitest::Test
   end
 
   def test_find_song
-    result = @room.find_song("Uptown Girl")
+    result = @karaoke_bar.find_song("Uptown Girl")
     assert_equal(@songs[1], result)
   end
 
   def test_add_song_to_queue
-    @room.add_song_to_queue("Venus")
-    assert_equal(1, @room.song_queue.length)
+    @karaoke_bar.add_song_to_queue("Venus")
+    assert_equal(1, @karaoke_bar.song_queue.length)
+  end
+
+  def test_create_room
+    result = @karaoke_bar.create_room("Joel", 4, 60, @songs)
+    assert_equal("Joel", result.booking_name)
+    assert_equal(4, result.number_of_guests)
+    assert_equal(60, result.booked_time)
+    assert_equal(@songs, result.song_list)
   end
 
   # def test_check_in_guest
