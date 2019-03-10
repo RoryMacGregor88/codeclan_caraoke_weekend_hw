@@ -17,11 +17,6 @@ class Guest
     return @money
   end
 
-  def select_song(song_name)
-    song = @room.find_song(song_name)
-    return song
-  end
-
   def sing_song(song)
     @songs_sang << song
   end

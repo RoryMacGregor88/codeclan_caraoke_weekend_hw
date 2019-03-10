@@ -20,13 +20,6 @@ class TestRoom < Minitest::Test
     @karaoke_bar =  KaraokeBar.new(@rooms, @guests)
   end
 
-  def test_create_room
-    @karaoke_bar.create_room("Joel", 4, 60)
-    assert_equal("Joel", @karaoke_bar.rooms[1].booking_name)
-    assert_equal(4, @karaoke_bar.rooms[1].number_of_guests)
-    assert_equal(60, @karaoke_bar.rooms[1].booked_time)
-  end
-
   def test_create_guest
     @karaoke_bar.create_new_guest("Eddie", "Jump", 50)
     assert_equal("Eddie", @karaoke_bar.guests[3].name)
@@ -34,15 +27,37 @@ class TestRoom < Minitest::Test
     assert_equal(50, @karaoke_bar.guests[3].guest_money)
   end
 
-  def test_find_room
+  def test_create_room__check_in_guest
+    @karaoke_bar.create_room__check_in_guest("Joel", 4, 60)
+    assert_equal("Joel", @karaoke_bar.rooms[1].booking_name)
+    assert_equal(4, @karaoke_bar.rooms[1].number_of_guests)
+    assert_equal(60, @karaoke_bar.rooms[1].booked_time)
+  end
+
+  def test_find_booked_room
     result = @karaoke_bar.find_room("Jackson")
     assert_equal(@karaoke_bar.rooms[0], result)
   end
 
-  #Same as create_room?
-  # def test_check_in_guest
-  #   @karaoke_bar.check_in_guest("Jackson",2, 20)
-  #   assert_equal(, result)
-  # end
+  def test_check_out_guest__remove_room
+    @karaoke_bar.create_room__check_in_guest("Turner", 4, 90)
+    assert_equal(2, @karaoke_bar.rooms.count)
+    @karaoke_bar.check_out_guest__remove_room("Turner")
+    assert_equal(1, @karaoke_bar.rooms.count)
+  end
+
+  def test_too_many_guests_in_room
+    @karaoke_bar.create_room__check_in_guest("Turner", 4, 90)
+    assert_equal(2, @karaoke_bar.rooms.count)
+    result = @karaoke_bar.create_room__check_in_guest("Van Halen", 8, 60)
+    assert_equal("Max capacity: 5", result)
+  end
+
+  def test_customer_can_pay
+    @karaoke_bar.create_room__check_in_guest("Turner", 4, 90)
+    assert_equal(2, @karaoke_bar.rooms.count)
+    result = @karaoke_bar.create_room__check_in_guest("Gibb", 5, 15)
+    assert_equal("Entry fee: £20", result)
+  end
 
 end

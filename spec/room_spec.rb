@@ -43,10 +43,10 @@ class TestRoom < Minitest::Test
   end
 
   def test_create_song
-    @karaoke_bar.rooms[0].create_new_song("Jump", "Rock", 4)
+    @karaoke_bar.rooms[0].add_new_song("Jump", "Rock", 4)
     assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
-    # assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
-    # assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
+    assert_equal("Rock", @karaoke_bar.rooms[0].song_list[3].genre)
+    assert_equal(4, @karaoke_bar.rooms[0].song_list[3].length)
   end
 
 end

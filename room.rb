@@ -1,6 +1,6 @@
 class Room
 
-  attr_reader :booking_name, :number_of_guests, :booked_time, :song_list, :song_queue
+  attr_reader :booking_name, :number_of_guests, :booked_time, :song_list, :song_queue, :capacity
 
   def initialize(booking_name, number_of_guests, booked_time)
     @booking_name = booking_name
@@ -9,26 +9,15 @@ class Room
     @capacity = 5
     @song_queue = []
     @song_list = [
-      song1 = {
-        title: "Off The Wall",
-        genre: "Motown",
-        length: 2
-      },
-      song2 = {
-        title: "Uptown Girl",
-        genre: "Pop",
-        length: 4
-      },
-      song3 = {
-        title: "Venus",
-        genre: "Pop",
-        length: 2
-      }
-  ]
+      Song.new("Off The Wall", "Motown", 2),
+      Song.new("Uptown Girl", "Pop", 4),
+      Song.new("Venus", "Pop", 2)
+    ]
+
   end
 
   def find_song(title)
-  result = @song_list.each {|i| return i if i[:title] == title}
+  result = @song_list.each {|i| return i if i.title == title}
   return result
   end
 
@@ -37,8 +26,8 @@ class Room
     @song_queue << result
   end
 
-  def create_new_song(title, genre, length)
-    @song_list << Song.new()
+  def add_new_song(title, genre, length)
+    @song_list << Song.new(title, genre, length)
   end
 
   # def create_room(booking_name, number_of_guests, booked_time, songs)
