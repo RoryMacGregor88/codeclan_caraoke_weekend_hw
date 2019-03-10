@@ -53,11 +53,15 @@ class TestRoom < Minitest::Test
     assert_equal("Max capacity: 5", result)
   end
 
-  def test_customer_can_pay
-    @karaoke_bar.create_room__check_in_guest("Turner", 4, 90)
-    assert_equal(2, @karaoke_bar.rooms.count)
-    result = @karaoke_bar.create_room__check_in_guest("Gibb", 5, 15)
-    assert_equal("Entry fee: £20", result)
-  end
+  # def test_customer_can_pay
+  #   @karaoke_bar.create_room__check_in_guest("Turner", 4, 90)
+  #   assert_equal(2, @karaoke_bar.rooms.count)
+  #   result = @karaoke_bar.create_room__check_in_guest("Gibb", 5, 15)
+  #   assert_equal("Entry fee: £20", result)
+  # end
+
+  # def test_customer_favourite_song
+  #
+  # end
 
 end

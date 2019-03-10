@@ -21,9 +21,9 @@ class TestGuest < Minitest::Test
     @karaoke_bar = [@rooms, @guests]
   end
 
-  # def test_guest_can_sing_song
-  #   @guest1.sing_song(@song1)
-  #   assert_equal(1, @guest1.songs_sang.length)
-  # end
+  def test_guest_can_sing_song
+    @karaoke_bar[1][1].sing_song(@karaoke_bar[0][0].song_list[0])
+    assert_equal(1, @karaoke_bar[1][1].songs_sang)
+  end
 
 end

@@ -1,6 +1,6 @@
 class Guest
 
-  attr_reader :name
+  attr_reader :name, :songs_sang
 
   def initialize(name, favourite_song, money)
     @name = name
@@ -19,6 +19,10 @@ class Guest
 
   def sing_song(song)
     @songs_sang << song
+  end
+
+  def songs_sang
+    return @songs_sang.length
   end
 
 end
