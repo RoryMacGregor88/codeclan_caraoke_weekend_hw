@@ -9,8 +9,12 @@ class Guest
     @songs_sang = []
   end
 
-  def favourite_song
+  def guest_fav_song
     return @favourite_song
+  end
+
+  def guest_money
+    return @money
   end
 
   def select_song(song_name)

@@ -16,4 +16,8 @@ class KaraokeBar
     @rooms << Room.new(booking_name, number_of_guests, booked_time)
   end
 
+  def create_new_guest(booking_name, favourite_song, money)
+    @guests << Guest.new(booking_name, favourite_song, money)
+  end
+
 end

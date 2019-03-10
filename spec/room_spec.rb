@@ -27,7 +27,7 @@ class TestRoom < Minitest::Test
   end
   #
   def test_guest_fave_songs
-    favourite_songs = @karaoke_bar.guests.map {|i| i.favourite_song}
+    favourite_songs = @karaoke_bar.guests.map {|i| i.guest_fav_song}
     assert_equal(["Smooth Criminal", "Uptown Girl", "Venus"], favourite_songs)
   end
   #
@@ -40,6 +40,13 @@ class TestRoom < Minitest::Test
   def test_add_song_to_queue
     @karaoke_bar.rooms[0].add_song_to_queue("Venus")
     assert_equal(1, @karaoke_bar.rooms[0].song_queue.length)
+  end
+
+  def test_create_song
+    @karaoke_bar.rooms[0].create_new_song("Jump", "Rock", 4)
+    assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
+    # assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
+    # assert_equal("Jump", @karaoke_bar.rooms[0].song_list[3].title)
   end
 
 end

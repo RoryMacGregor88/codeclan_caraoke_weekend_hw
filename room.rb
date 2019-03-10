@@ -37,6 +37,10 @@ class Room
     @song_queue << result
   end
 
+  def create_new_song(title, genre, length)
+    @song_list << Song.new()
+  end
+
   # def create_room(booking_name, number_of_guests, booked_time, songs)
   #   Room.new(booking_name, number_of_guests, booked_time, songs)
   # end

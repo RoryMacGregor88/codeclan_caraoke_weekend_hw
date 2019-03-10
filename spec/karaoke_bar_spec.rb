@@ -27,13 +27,12 @@ class TestRoom < Minitest::Test
     assert_equal(60, @karaoke_bar.rooms[1].booked_time)
   end
 
-  # def test_create_guest
-  #
-  # end
-  #
-  # def test_create_song
-  #
-  # end
+  def test_create_guest
+    @karaoke_bar.create_new_guest("Eddie", "Jump", 50)
+    assert_equal("Eddie", @karaoke_bar.guests[3].name)
+    assert_equal("Jump", @karaoke_bar.guests[3].guest_fav_song)
+    assert_equal(50, @karaoke_bar.guests[3].guest_money)
+  end
 
   def test_find_room
     result = @karaoke_bar.find_room("Jackson")
