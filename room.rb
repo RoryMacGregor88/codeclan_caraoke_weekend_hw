@@ -17,8 +17,8 @@ class Room
   end
 
   def find_song(title)
-  result = @song_list.each {|i| return i if i.title == title}
-  return result
+  @song_list.each {|i| return i if i.title == title}
+  return nil
   end
 
   def add_song_to_queue(song)
@@ -29,9 +29,5 @@ class Room
   def add_new_song(title, genre, length)
     @song_list << Song.new(title, genre, length)
   end
-
-  # def create_room(booking_name, number_of_guests, booked_time, songs)
-  #   Room.new(booking_name, number_of_guests, booked_time, songs)
-  # end
 
 end

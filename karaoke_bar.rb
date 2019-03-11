@@ -22,8 +22,7 @@ class KaraokeBar
     if number_of_guests < @rooms_max_capacity
       @rooms << Room.new(booking_name, number_of_guests, booked_time)
     end
-    else
-      return "Max capacity: 5"
+    return "Max capacity: 5"
   end
 
   def check_out_guest__remove_room(name)
